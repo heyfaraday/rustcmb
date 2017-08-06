@@ -1,4 +1,4 @@
-extern crate rustfft;
+extern crate rustcmb;
 
 fn main() {
     println!("Hello, world!");
