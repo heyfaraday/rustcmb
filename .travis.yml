@@ -1,3 +1,13 @@
 language: rust
 rust: stable
 sudo: required
+dist: trusty
+
+cache: cargo
+before_script:
+- export PATH="$PATH:$HOME/.cargo/bin"
+- which rustfmt || cargo install rustfmt
+script:
+- cargo fmt -- --write-mode=diff
+- cargo build
+- cargo test
