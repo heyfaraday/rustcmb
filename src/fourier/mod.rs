@@ -5,7 +5,7 @@ use self::rustfft::FFT;
 use self::rustfft::num_complex::Complex;
 use self::rustfft::num_traits::Zero;
 
-pub fn fft_1d_first_realization(field: &mut Vec<f64>, a_mods: & Vec<f64>, b_mods: & Vec<f64>) {
+pub fn fft_1d_first_realization(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<f64>) {
 
     let size = field.capacity() - 1;
 
