@@ -2,5 +2,22 @@
 name = "rustcmb"
 version = "0.1.0"
 authors = ["Ivan Edigarev <heyfaraday@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/heyfaraday/rustcmb"
+description = """
+Library for statistical testing of the Cosmic Microwave Background radiation
+"""
+
+[lib]
+name = "rustcmb"
+path = "src/lib.rs"
+
+[[example]]
+name = "fft_1d"
+
+[[example]]
+name = "fft_2d"
 
 [dependencies]
+text_io = "*"
+rustfft = "2.0.0"
