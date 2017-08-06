@@ -18,3 +18,7 @@ Cargo.lock
 
 # macOS
 *.DS_Store
+
+# Data files
+/data/
+*.dat

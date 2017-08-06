@@ -21,3 +21,4 @@ name = "fft_2d"
 [dependencies]
 text_io = "*"
 rustfft = "2.0.0"
+rand = "0.3"
