@@ -1,0 +1,6 @@
+[package]
+name = "rustcmb"
+version = "0.1.0"
+authors = ["Ivan Edigarev <heyfaraday@gmail.com>"]
+
+[dependencies]
