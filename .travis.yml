@@ -11,3 +11,7 @@ script:
 - cargo fmt -- --write-mode=diff
 - cargo build
 - cargo test
+
+notifications:
+  email:
+    on_success: never
