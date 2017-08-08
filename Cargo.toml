@@ -18,7 +18,14 @@ name = "fft_1d"
 [[example]]
 name = "fft_2d"
 
+[[example]]
+name = "corr"
+
 [dependencies]
 text_io = "*"
 rustfft = "2.0.0"
 rand = "0.3"
+GSL = "0.4"
+
+[features]
+v2 = ["GSL/v2"]
