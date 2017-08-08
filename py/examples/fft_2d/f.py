@@ -1,16 +1,14 @@
 from numpy import *
 from pylab import *
 
-N = 64 + 1
-M = 64 + 1
+size = 64
 
-# xlim([0,1])
-# ylim([0,1])
+plt.figure(figsize=(8, 8))
 
 x, y, z = genfromtxt("../../../data/examples/out/fft_2d/f.dat").T
-x = x.reshape(N, M)
-y = y.reshape(N, M)
-z = z.reshape(N, M)
+x = x.reshape(size + 1, size + 1)
+y = y.reshape(size + 1, size + 1)
+z = z.reshape(size + 1, size + 1)
 pcolor(x, y, z)
 
 show()
