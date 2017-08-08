@@ -31,4 +31,4 @@ rand = "0.3"
 GSL = "0.4"
 
 [features]
-v2 = ["GSL/v2"]
+default = ["GSL/v2"]

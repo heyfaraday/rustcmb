@@ -4,7 +4,12 @@ use self::rand::distributions::normal::StandardNormal;
 
 pub fn gasdev(a: &mut Vec<Vec<f64>>, b: &mut Vec<Vec<f64>>, mean: f64, std: f64) {
 
-    let size = a.capacity() - 1;
+    let size: usize = a.capacity() - 1;
+
+    assert!(a.capacity() == size + 1);
+    assert!(b.capacity() == size + 1);
+    assert!(a[0].capacity() == size + 1);
+    assert!(b[0].capacity() == size + 1);
 
     for i in 0..(size / 2 + 1) {
         for j in 0..(size / 2 + 1) {
