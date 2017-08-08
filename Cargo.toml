@@ -13,13 +13,16 @@ name = "rustcmb"
 path = "src/lib.rs"
 
 [[example]]
+name = "corr"
+
+[[example]]
 name = "fft_1d"
 
 [[example]]
 name = "fft_2d"
 
 [[example]]
-name = "corr"
+name = "rgsl"
 
 [dependencies]
 text_io = "*"
