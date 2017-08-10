@@ -27,6 +27,9 @@ name = "io"
 [[example]]
 name = "rgsl"
 
+[[example]]
+name = "spectra"
+
 [dependencies]
 text_io = "*"
 rustfft = "2.0.0"

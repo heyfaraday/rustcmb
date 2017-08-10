@@ -1,3 +1,9 @@
+extern crate rand;
+
+use err::size_assert_2d_for_field;
+
+use self::rand::distributions::normal::StandardNormal;
+
 use err::point_assert;
 
 use std::f64::consts::PI;
@@ -48,4 +54,32 @@ pub fn angle_for_vector_field(vx: &f64, vy: &f64) -> f64 {
     }
 
     phi
+}
+
+pub fn fourier_distance(field: &Vec<Vec<f64>>, k1: usize, k2: usize) -> f64 {
+
+    let size = field.capacity() - 1;
+
+    size_assert_2d_for_field(&field);
+    assert!(k1 < (size / 2 + 1));
+    assert!(k2 < size);
+
+    let d1 = k1 as f64;
+    let d2 = k2 as f64 - (size / 2) as f64;
+
+    (d1 * d1 + d2 * d2).sqrt()
+}
+
+pub fn normal_generator(mean: f64, std: f64) -> f64 {
+    let StandardNormal(x) = rand::random();
+    mean + x * std
+}
+
+pub fn normal_generator_max(mean: f64, std: f64, arg: f64, max_arg: f64) -> f64 {
+    if arg > max_arg {
+        mean
+    } else {
+        let StandardNormal(x) = rand::random();
+        x * std
+    }
 }

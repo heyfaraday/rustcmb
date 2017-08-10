@@ -10,7 +10,7 @@ const DATA_OUT: &str = "data/examples/out/corr/";
 
 fn main() {
 
-    let field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
+    let field: Vec<Vec<f64>> = vec![vec![1.; SIZE + 1]; SIZE + 1];
 
     let x = math::torus_distance(&field, &[1, 2], &[3, 4]);
     println!("Torus distance between [1, 2] and [3, 4] {}", x);
@@ -35,4 +35,14 @@ fn main() {
 
     let answer_for_simple_correlation_vector_field =
         correlation_function_vector_field(&field, &field, 20);
+    write_1d(
+        &answer_for_simple_correlation_vector_field[0],
+        DATA_OUT,
+        "correlation_function_vector_field.dat",
+    );
+    write_1d(
+        &answer_for_simple_correlation_vector_field[1],
+        DATA_OUT,
+        "norm_for_correlation_function_vector_field.dat",
+    );
 }
