@@ -1,5 +1,5 @@
 use err::{size_assert_2d_for_field, point_assert};
-use math::torus_distance;
+use math::{torus_distance, angle_for_vector_field};
 
 pub fn correlation_function(field: &Vec<Vec<f64>>, output_size: usize) -> [Vec<f64>; 2] {
 
@@ -95,4 +95,73 @@ pub fn correlation_distance(field: &Vec<Vec<f64>>, point: &[usize; 2]) -> Vec<Ve
         }
     }
     distance
+}
+
+pub fn correlation_function_vector_field(
+    vx: &Vec<Vec<f64>>,
+    vy: &Vec<Vec<f64>>,
+    output_size: usize,
+) -> [Vec<f64>; 2] {
+
+    let size = vx.capacity() - 1;
+    let size_2 = vy.capacity() - 1;
+    assert!(size == size_2);
+
+    size_assert_2d_for_field(&vx);
+    size_assert_2d_for_field(&vy);
+
+    let max_distance = torus_distance(&vx, &[0, 0], &[size / 2, size / 2]);
+
+    let mut output = vec![0.; output_size];
+    let mut norm_for_output = vec![0.; output_size];
+    let h = max_distance / (output_size as f64);
+
+    let mut index;
+
+    for i_first_point in 0..size {
+        for j_first_point in 0..size {
+
+            let point_1 = [i_first_point, j_first_point];
+            let angle_1 = angle_for_vector_field(
+                &vx[i_first_point][j_first_point],
+                &vy[i_first_point][j_first_point],
+            );
+
+            for j_second_point in (j_first_point + 1)..size {
+
+                let point_2 = [i_first_point, j_second_point];
+                index = (torus_distance(&vx, &point_1, &point_2) / h).trunc() as usize;
+                if index == output_size {
+                    index -= 1;
+                }
+                let angle_2 = angle_for_vector_field(
+                    &vx[i_first_point][j_second_point],
+                    &vy[i_first_point][j_second_point],
+                );
+                output[index] += (angle_1 - angle_2).abs().sin(); //?
+                norm_for_output[index] += 1.;
+            }
+
+            for i_second_point in (i_first_point + 1)..size {
+                for j_second_point in 0..size {
+
+                    let point_2 = [i_second_point, j_second_point];
+                    index = (torus_distance(&vx, &point_1, &point_2) / h).trunc() as usize;
+                    if index == output_size {
+                        index -= 1;
+                    }
+                    let angle_2 = angle_for_vector_field(
+                        &vy[i_second_point][j_second_point],
+                        &vy[i_second_point][j_second_point],
+                    );
+                    output[index] += (angle_1 - angle_2).abs().sin(); //?
+                    norm_for_output[index] += 1.;
+                }
+            }
+        }
+    }
+    for i in 0..output_size {
+        output[i] = output[i] / norm_for_output[i];
+    }
+    [output, norm_for_output]
 }

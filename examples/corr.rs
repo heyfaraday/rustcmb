@@ -1,6 +1,7 @@
 extern crate rustcmb;
 
-use rustcmb::corr::{correlation_function, correlation_check, correlation_distance};
+use rustcmb::corr::{correlation_function, correlation_check, correlation_distance,
+                    correlation_function_vector_field};
 use rustcmb::io::{write_2d, write_1d};
 use rustcmb::math;
 
@@ -31,4 +32,7 @@ fn main() {
         DATA_OUT,
         "norm_for_correlation_function.dat",
     );
+
+    let answer_for_simple_correlation_vector_field =
+        correlation_function_vector_field(&field, &field, 20);
 }
