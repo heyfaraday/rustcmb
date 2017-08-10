@@ -1,14 +1,13 @@
+use err::point_assert;
+
 use std::f64::consts::PI;
 
 pub fn torus_distance(field: &Vec<Vec<f64>>, point_1: &[usize; 2], point_2: &[usize; 2]) -> f64 {
 
-    let size: usize = field.capacity() - 1;
+    let size = field.capacity() - 1;
 
-    assert!(field.capacity() == size + 1);
-    assert!(point_1[0] < size + 1);
-    assert!(point_1[1] < size + 1);
-    assert!(point_2[0] < size + 1);
-    assert!(point_2[1] < size + 1);
+    point_assert(&field, &point_1);
+    point_assert(&field, &point_2);
 
     let i: f64 = if point_1[0] >= point_2[0] {
         point_1[0] as f64 - point_2[0] as f64

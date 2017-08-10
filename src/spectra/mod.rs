@@ -12,7 +12,7 @@ pub fn gasdev(
     std: f64,
 ) {
 
-    let size: usize = field.capacity() - 1;
+    let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a, &b);
 
