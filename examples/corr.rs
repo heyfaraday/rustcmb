@@ -1,7 +1,7 @@
 extern crate rustcmb;
 
-use rustcmb::corr::{correlation_check, correlation_distance};
-use rustcmb::io::write_2d;
+use rustcmb::corr::{correlation_function, correlation_check, correlation_distance};
+use rustcmb::io::{write_2d, write_1d};
 use rustcmb::math;
 
 const SIZE: usize = 64;
@@ -20,5 +20,15 @@ fn main() {
     let field_distance = correlation_distance(&field, &[60, 60]);
     write_2d(&field_distance, DATA_OUT, "field_distance.dat");
 
-    // example for correlation_function
+    let answer_for_simple_correlation = correlation_function(&field, 20);
+    write_1d(
+        &answer_for_simple_correlation[0],
+        DATA_OUT,
+        "correlation_function.dat",
+    );
+    write_1d(
+        &answer_for_simple_correlation[1],
+        DATA_OUT,
+        "norm_for_correlation_function.dat",
+    );
 }
