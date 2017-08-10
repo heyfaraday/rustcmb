@@ -16,6 +16,9 @@ path = "src/lib.rs"
 name = "corr"
 
 [[example]]
+name = "d_2d"
+
+[[example]]
 name = "fft_1d"
 
 [[example]]
