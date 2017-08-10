@@ -138,7 +138,7 @@ pub fn correlation_function_vector_field(
                     &vx[i_first_point][j_second_point],
                     &vy[i_first_point][j_second_point],
                 );
-                output[index] += (angle_1 - angle_2).abs().sin(); //?
+                output[index] += (angle_1 - angle_2).sin().abs();
                 norm_for_output[index] += 1.;
             }
 
@@ -154,7 +154,7 @@ pub fn correlation_function_vector_field(
                         &vy[i_second_point][j_second_point],
                         &vy[i_second_point][j_second_point],
                     );
-                    output[index] += (angle_1 - angle_2).abs().sin(); //?
+                    output[index] += (angle_1 - angle_2).sin().abs();
                     norm_for_output[index] += 1.;
                 }
             }
