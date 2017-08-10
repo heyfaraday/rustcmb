@@ -5,7 +5,7 @@ use rustcmb::io::write_2d;
 use rustcmb::spectra::gasdev;
 
 #[allow(dead_code)]
-const DATA_IN: &str = "data/examples/int/fft_2d/";
+const DATA_IN: &str = "data/examples/in/fft_2d/";
 const DATA_OUT: &str = "data/examples/out/fft_2d/";
 const SIZE: usize = 8;
 

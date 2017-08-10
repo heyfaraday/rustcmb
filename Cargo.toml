@@ -22,6 +22,9 @@ name = "fft_1d"
 name = "fft_2d"
 
 [[example]]
+name = "io"
+
+[[example]]
 name = "rgsl"
 
 [dependencies]

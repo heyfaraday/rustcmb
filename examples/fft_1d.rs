@@ -4,7 +4,7 @@ use rustcmb::fourier::fft_1d;
 use rustcmb::io::write_1d;
 
 #[allow(dead_code)]
-const DATA_IN: &str = "data/examples/int/fft_1d/";
+const DATA_IN: &str = "data/examples/in/fft_1d/";
 const DATA_OUT: &str = "data/examples/out/fft_1d/";
 const SIZE: usize = 8;
 
