@@ -6,7 +6,7 @@ use rustcmb::fourier::fft_2d::first_realization;
 use rustcmb::diff::d_2d::{d_2d_x, d_2d_y};
 use rustcmb::io::write_1d;
 
-const SIZE: usize = 64;
+const SIZE: usize = 64; // 128
 const DATA_OUT: &str = "data/examples/out/vector_field/";
 const MAX_ARG: f64 = SIZE as f64 / 4.;
 const SCALE: usize = 20;
@@ -18,7 +18,8 @@ fn main() {
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
 
     gasdev_max_k(&field, &mut a_mods, &mut b_mods, 0., 1., 4.);
-    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG); // or
+    // or // MAX_ARG / 2.
+    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG);
 
     first_realization(&mut field, &a_mods, &b_mods);
 
