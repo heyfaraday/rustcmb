@@ -1,37 +1,48 @@
 language: rust
+
+os: linux
 rust: stable
 sudo: required
 dist: trusty
 
+env:
+  global:
+#   CODECOV
+    - RUSTFLAGS="-C link-dead-code"
+addons:
+  apt:
+    packages:
+#   CODECOV
+    - libcurl4-openssl-dev
+    - libelf-dev
+    - libdw-dev
+    - cmake
+    - gcc
+    - binutils-dev
+    - libiberty-dev
+
 cache: cargo
+
+# RUSTFMT
 before_script:
-- export PATH="$PATH:$HOME/.cargo/bin"
-- which rustfmt || cargo install rustfmt
+  - export PATH="$PATH:$HOME/.cargo/bin"
+  - which rustfmt || cargo install rustfmt
+
 script:
-- cargo fmt -- --write-mode=diff
-- cargo build
-- cargo test
+  - rustc --version
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo build --verbose; else cargo build --verbose; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo test --verbose; else cargo test --verbose; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo doc --verbose; else cargo doc --verbose; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo build --verbose --release; else cargo build --release --verbose; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo test --verbose --release; else cargo test --release --verbose; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo doc --verbose --release; else cargo doc --release --verbose; fi
+  - cargo fmt --verbose -- --write-mode=diff
 
 notifications:
   email:
     on_success: never
 
-env:
-  global:
-  - RUSTFLAGS="-C link-dead-code"
-
-addons:
-  apt:
-    packages:
-      - libcurl4-openssl-dev
-      - libelf-dev
-      - libdw-dev
-      - cmake
-      - gcc
-      - binutils-dev
-      - libiberty-dev
-      - gsl
-
+# CODECOV
 after_success: |
   wget https://github.com/SimonKagstrom/kcov/archive/master.tar.gz &&
   tar xzf master.tar.gz &&

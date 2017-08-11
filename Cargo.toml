@@ -28,9 +28,6 @@ name = "fft_2d"
 name = "io"
 
 [[example]]
-name = "rgsl"
-
-[[example]]
 name = "spectra"
 
 [[example]]
@@ -43,7 +40,3 @@ name = "tensor_field"
 text_io = "*"
 rustfft = "2.0.0"
 rand = "0.3"
-GSL = "0.4"
-
-[features]
-default = ["GSL/v2"]
