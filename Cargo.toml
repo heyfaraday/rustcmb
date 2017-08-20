@@ -13,6 +13,12 @@ name = "rustcmb"
 path = "src/lib.rs"
 
 [[example]]
+name = "core_torus"
+
+[[example]]
+name = "core_sphere"
+
+[[example]]
 name = "corr"
 
 [[example]]
