@@ -19,7 +19,7 @@ fn main() {
 
     gasdev(&field, &mut a_mods, &mut b_mods, 0., 1.);
 
-    fft_2d::first_realization(&mut field, &a_mods, &b_mods);
+    fft_2d::torus::first_realization(&mut field, &a_mods, &b_mods);
     write_2d(&field, &DATA_OUT, &"field.dat");
 
     let mut field_xx: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];

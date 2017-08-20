@@ -3,7 +3,7 @@ extern crate rustcmb;
 use rustcmb::corr::{correlation_function, correlation_check, correlation_distance,
                     correlation_function_vector_field};
 use rustcmb::spectra::gasdev;
-use rustcmb::fourier::fft_2d::first_realization;
+use rustcmb::fourier::fft_2d::torus::first_realization;
 use rustcmb::io::{write_2d, write_1d};
 use rustcmb::math;
 

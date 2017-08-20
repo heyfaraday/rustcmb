@@ -19,13 +19,13 @@ fn main() {
     println!("a_mods[2] {:?}", a_mods[2]);
     println!("b_mods[4] {:?}", b_mods[4]);
 
-    fft_2d::first_realization(&mut field, &a_mods, &b_mods);
+    fft_2d::torus::first_realization(&mut field, &a_mods, &b_mods);
     write_2d(&field, &DATA_OUT, &"first_realization_field.dat");
 
-    fft_2d::second_realization(&mut field, &a_mods, &b_mods);
+    fft_2d::torus::second_realization(&mut field, &a_mods, &b_mods);
     write_2d(&field, &DATA_OUT, &"second_realization_field.dat");
 
-    fft_2d::back(&field, &mut a_mods, &mut b_mods);
+    fft_2d::torus::back(&field, &mut a_mods, &mut b_mods);
 
     println!("a_mods[2] after {:?}", a_mods[2]);
     println!("b_mods[4] after {:?}", b_mods[4]);
@@ -37,14 +37,14 @@ fn main() {
     field[3][3] = 1.;
     println!("field[3] {:?}", field[3]);
 
-    fft_2d::back(&field, &mut a_mods, &mut b_mods);
+    fft_2d::torus::back(&field, &mut a_mods, &mut b_mods);
 
-    fft_2d::first_realization(&mut field, &a_mods, &b_mods);
+    fft_2d::torus::first_realization(&mut field, &a_mods, &b_mods);
     write_2d(&field, &DATA_OUT, &"first_realization_field_from_back.dat");
 
     println!("first realization field[3] after {:?}", field[3]);
 
-    fft_2d::second_realization(&mut field, &a_mods, &b_mods);
+    fft_2d::torus::second_realization(&mut field, &a_mods, &b_mods);
     write_2d(&field, &DATA_OUT, &"first_realization_field_from_back.dat");
     println!("second realization field[3] after {:?}", field[3]);
 
