@@ -34,6 +34,9 @@ name = "fft_2d"
 name = "io"
 
 [[example]]
+name = "norm"
+
+[[example]]
 name = "spectra"
 
 [[example]]
