@@ -65,21 +65,26 @@ pub fn fourier_distance(field: &Vec<Vec<f64>>, k1: usize, k2: usize) -> f64 {
     assert!(k2 < size);
 
     let d1 = k1 as f64;
-    let d2 = k2 as f64 - (size / 2) as f64;
+    let d2 = if k2 as f64 <= size as f64 / 2. {
+        k2 as f64
+    } else {
+        k2 as f64 - size as f64
+    };
 
     (d1 * d1 + d2 * d2).sqrt()
 }
 
+#[inline]
 pub fn normal_generator(mean: f64, std: f64) -> f64 {
     let StandardNormal(x) = rand::random();
     mean + x * std
 }
 
+#[inline]
 pub fn normal_generator_max(mean: f64, std: f64, arg: f64, max_arg: f64) -> f64 {
     if arg > max_arg {
         mean
     } else {
-        let StandardNormal(x) = rand::random();
-        x * std
+        normal_generator(mean, std)
     }
 }

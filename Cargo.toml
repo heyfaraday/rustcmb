@@ -22,6 +22,9 @@ name = "core_sphere"
 name = "corr"
 
 [[example]]
+name = "corr_2d"
+
+[[example]]
 name = "d_2d"
 
 [[example]]
