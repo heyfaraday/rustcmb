@@ -11,20 +11,25 @@ const XI_XX: f64 = -0.5;
 const XI_YY: f64 = 0.7;
 const XI_XY: f64 = 0.9;
 
-const XI_XX_0: f64 = - 1.;
-const XI_YY_0: f64 = - 1.;
+const XI_XX_0: f64 = -1.;
+const XI_YY_0: f64 = -1.;
 
 fn main() {
 
-    let mut file = File::create("data/examples/out/mcmc/sample.dat").expect("Unable to create file");
+    let mut file =
+        File::create("data/examples/out/mcmc/sample.dat").expect("Unable to create file");
 
     for _ in 0..NUMBER_FOR_SAMPLING {
 
         let f_plus = XI_XY / ((1. + XI_XX) * (1. + XI_YY)).sqrt();
-        let f_minus = - XI_XY / ((1. - XI_XX) * (1. - XI_XX)).sqrt();
+        let f_minus = -XI_XY / ((1. - XI_XX) * (1. - XI_XX)).sqrt();
 
-        let sigma = [2. * (1. + f_plus), 2. * (1. - f_plus),
-            2. * (1. + f_minus), 2. * (1. - f_minus)];
+        let sigma: [f64; 4] = [
+            2. * (1. + f_plus),
+            2. * (1. - f_plus),
+            2. * (1. + f_minus),
+            2. * (1. - f_minus),
+        ];
 
         let delta_1: f64 = random_normal_number() * sigma[0].sqrt();
         let delta_2: f64 = random_normal_number() * sigma[1].sqrt();
@@ -41,10 +46,10 @@ fn main() {
         let wy1 = 0.5 * (wy_plus + wy_minus);
         let wy2 = 0.5 * (wy_plus - wy_minus);
 
-        let vx1 = wx1 / (- XI_XX_0).sqrt();
-        let vx2 = wx2 / (- XI_XX_0).sqrt();
-        let vy1 = wy1 / (- XI_YY_0).sqrt();
-        let vy2 = wy2 / (- XI_YY_0).sqrt();
+        let vx1 = wx1 / (-XI_XX_0).sqrt();
+        let vx2 = wx2 / (-XI_XX_0).sqrt();
+        let vy1 = wy1 / (-XI_YY_0).sqrt();
+        let vy2 = wy2 / (-XI_YY_0).sqrt();
 
         let v1 = (vx1 * vx1 + vy1 * vy1).sqrt();
         let v2 = (vx2 * vx2 + vy2 * vy2).sqrt();
