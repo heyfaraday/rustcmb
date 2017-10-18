@@ -83,12 +83,12 @@ fn main() {
             cor_func[(delta_i + SIZE as i32 - 1) as usize][(delta_j + SIZE as i32 - 1) as usize] =
                 sum;
 
-            //            println!(
-            //                "delta_i: {}, delta_j: {}, cor_func: {}",
-            //                delta_i,
-            //                delta_j,
-            //                cor_func[(delta_i + SIZE as i32 - 1) as usize][(delta_j + SIZE as i32 - 1) as usize]
-            //            );
+            println!(
+                "delta_i: {}, delta_j: {}, cor_func: {}",
+                delta_i,
+                delta_j,
+                cor_func[(delta_i + SIZE as i32 - 1) as usize][(delta_j + SIZE as i32 - 1) as usize]
+            );
         }
     }
 
