@@ -53,5 +53,5 @@ fn main() {
     write_2d(&field, &DATA_OUT, &"gasdev_exp_and_sin_field.dat");
 
     let returned_spectra = return_spectra(&field, &a_mods, &b_mods, 100);
-    write_1d(&returned_spectra, &DATA_OUT, &"returned_exp_k0_spectra.dat");
+    write_1d(&returned_spectra[0], &DATA_OUT, &"returned_exp_k0_spectra.dat");
 }
