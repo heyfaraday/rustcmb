@@ -13,10 +13,10 @@ name = "rustcmb"
 path = "src/lib.rs"
 
 [[example]]
-name = "core_torus"
+name = "core_sphere"
 
 [[example]]
-name = "core_sphere"
+name = "core_torus"
 
 [[example]]
 name = "corr"
@@ -43,13 +43,16 @@ name = "mcmc"
 name = "norm"
 
 [[example]]
+name = "scalar_field"
+
+[[example]]
 name = "spectra"
 
 [[example]]
-name = "vector_field"
+name = "tensor_field"
 
 [[example]]
-name = "tensor_field"
+name = "vector_field"
 
 [dependencies]
 text_io = "*"

@@ -11,55 +11,52 @@ pub fn gasdev(
     std: f64,
 ) {
 
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a, &b);
 
     for i_mode in 0..1 {
-        for j_mode in 0..(size / 2 + 1) {
-
+        for j_mode in 1..(size / 2) {
             a[i_mode][j_mode] = normal_generator(mean, std);
+            b[i_mode][j_mode] = normal_generator(mean, std);
         }
 
         for j_mode in (size / 2 + 1)..size {
             a[i_mode][j_mode] = 0.;
-        }
-
-        for j_mode in 1..(size / 2) {
-
-            b[i_mode][j_mode] = normal_generator(mean, std);
-        }
-        for j_mode in (size / 2)..size {
             b[i_mode][j_mode] = 0.;
         }
+
+        a[i_mode][0] = normal_generator(mean, std);
+        a[i_mode][size / 2] = normal_generator(mean, std);
+
+        b[i_mode][0] = 0.;
+        b[i_mode][size / 2] = 0.;
+
     }
 
     for i_mode in 1..(size / 2) {
         for j_mode in 0..size {
-
             a[i_mode][j_mode] = normal_generator(mean, std);
-
             b[i_mode][j_mode] = normal_generator(mean, std);
         }
     }
 
     for i_mode in (size / 2)..(size / 2 + 1) {
-        for j_mode in 0..(size / 2 + 1) {
-
+        for j_mode in 1..(size / 2) {
             a[i_mode][j_mode] = normal_generator(mean, std);
+            b[i_mode][j_mode] = normal_generator(mean, std);
         }
 
         for j_mode in (size / 2 + 1)..size {
             a[i_mode][j_mode] = 0.;
-        }
-
-        for j_mode in 1..(size / 2) {
-
-            b[i_mode][j_mode] = normal_generator(mean, std);
-        }
-        for j_mode in (size / 2)..size {
             b[i_mode][j_mode] = 0.;
         }
+
+        a[i_mode][0] = normal_generator(mean, std);
+        a[i_mode][size / 2] = normal_generator(mean, std);
+
+        b[i_mode][0] = 0.;
+        b[i_mode][size / 2] = 0.;
     }
 }
 
@@ -340,12 +337,31 @@ pub fn gasdev_exp_and_sin(
     }
 }
 
+fn make_index_for_return_spectra(
+    field: &Vec<Vec<f64>>,
+    i_mode: &usize,
+    j_mode: &usize,
+    size: &usize,
+    number_of_bins: &usize,
+) -> usize {
+
+    let mut index = (fourier_distance(&field, *i_mode, *j_mode) /
+                         (*size as f64 / (2. as f64).sqrt()) *
+                         *number_of_bins as f64)
+        .trunc() as usize;
+
+    if index == *number_of_bins {
+        index -= 1;
+    }
+    index
+}
+
 pub fn return_spectra(
     field: &Vec<Vec<f64>>,
     a: &Vec<Vec<f64>>,
     b: &Vec<Vec<f64>>,
     number_of_bins: usize,
-) -> Vec<f64> {
+) -> [Vec<f64>; 2] {
 
     let size = field.capacity() - 1;
     size_assert_2d(&field, &a, &b);
@@ -353,34 +369,75 @@ pub fn return_spectra(
     let mut spectra: Vec<f64> = vec![0.; number_of_bins];
     let mut norm_for_spectra: Vec<f64> = vec![0.; number_of_bins];
 
-    for i_mode in 0..(size / 2 + 1) {
-        for j_mode in 0..size {
+    for i_mode in 0..1 {
 
-            let mut index = (fourier_distance(&field, i_mode, j_mode) /
-                                 (size as f64 / (2. as f64).sqrt()) *
-                                 number_of_bins as f64)
-                .trunc() as usize;
+        for j_mode in 1..(size / 2) {
 
-            if index == number_of_bins {
-                index -= 1;
-            }
-
-            println!("i: {}, j: {}, Index: {}\n", i_mode, j_mode, index);
+            let index =
+                make_index_for_return_spectra(&field, &i_mode, &j_mode, &size, &number_of_bins);
 
             spectra[index] += a[i_mode][j_mode] * a[i_mode][j_mode] +
                 b[i_mode][j_mode] * b[i_mode][j_mode];
-            norm_for_spectra[index] += 1.;
+
+            norm_for_spectra[index] += 2.;
         }
+
+        let index = make_index_for_return_spectra(&field, &i_mode, &0, &size, &number_of_bins);
+        spectra[index] += a[i_mode][0] * a[i_mode][0];
+
+        let index =
+            make_index_for_return_spectra(&field, &i_mode, &(size / 2), &size, &number_of_bins);
+        spectra[index] += a[i_mode][size / 2] * a[i_mode][size / 2];
+
+        norm_for_spectra[index] += 2.;
+
+    }
+
+    for i_mode in 1..(size / 2) {
+        for j_mode in 0..size {
+
+            let index =
+                make_index_for_return_spectra(&field, &i_mode, &j_mode, &size, &number_of_bins);
+
+            spectra[index] += a[i_mode][j_mode] * a[i_mode][j_mode] +
+                b[i_mode][j_mode] * b[i_mode][j_mode];
+
+            norm_for_spectra[index] += 2.;
+        }
+    }
+
+    for i_mode in (size / 2)..(size / 2 + 1) {
+
+        for j_mode in 1..(size / 2) {
+
+            let index =
+                make_index_for_return_spectra(&field, &i_mode, &j_mode, &size, &number_of_bins);
+
+            spectra[index] += a[i_mode][j_mode] * a[i_mode][j_mode] +
+                b[i_mode][j_mode] * b[i_mode][j_mode];
+
+            norm_for_spectra[index] += 2.;
+        }
+
+        let index = make_index_for_return_spectra(&field, &i_mode, &0, &size, &number_of_bins);
+        spectra[index] += a[i_mode][0] * a[i_mode][0];
+
+        let index =
+            make_index_for_return_spectra(&field, &i_mode, &(size / 2), &size, &number_of_bins);
+        spectra[index] += a[i_mode][size / 2] * a[i_mode][size / 2];
+
+        norm_for_spectra[index] += 2.;
+
     }
 
     for i in 0..number_of_bins {
         spectra[i] /= norm_for_spectra[i];
     }
-    spectra
+    [spectra, norm_for_spectra]
 }
 
 #[inline]
-fn exp_and_sin(
+pub fn exp_and_sin(
     size: &usize,
     arg: &f64,
     null_gap: &f64,
