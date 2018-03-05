@@ -1,10 +1,10 @@
 extern crate rustcmb;
 
 use rustcmb::corr::correlation_function;
-use rustcmb::spectra::{gasdev_max_k, gasdev_exp_k0};
+use rustcmb::spectra::{gasdev, gasdev_max_k, gasdev_exp_k0};
 use rustcmb::fourier::fft_2d::torus::first_realization;
 use rustcmb::diff::d_2d::{d_2d_xx, d_2d_yy, d_2d_xy};
-use rustcmb::io::write_1d;
+use rustcmb::io::{write_1d, write_2d};
 
 const SIZE: usize = 64;
 const DATA_OUT: &str = "data/examples/out/tensor_field/";
@@ -17,8 +17,9 @@ fn main() {
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
 
+//    gasdev(&field, &mut a_mods, &mut b_mods, 0., 1.);
     gasdev_max_k(&field, &mut a_mods, &mut b_mods, 0., 1., 4.);
-    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG); // or
+//    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG); // or
 
     first_realization(&mut field, &a_mods, &b_mods);
 
@@ -42,4 +43,8 @@ fn main() {
             u[i][j] = 2. * field_xy[i][j];
         }
     }
+
+    write_2d(&field, &DATA_OUT, &"field.dat");
+    write_2d(&q, &DATA_OUT, &"q.dat");
+    write_2d(&u, &DATA_OUT, &"u.dat");
 }
