@@ -12,14 +12,13 @@ const MAX_ARG: f64 = SIZE as f64 / 4.;
 const SCALE: usize = 32;
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![1.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
 
     gasdev_max_k(&field, &mut a_mods, &mut b_mods, 0., 1., 8.);
     // or // MAX_ARG / 2.
-//    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG);
+    //    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG);
 
     first_realization(&mut field, &a_mods, &b_mods);
 

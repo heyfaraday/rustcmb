@@ -48,7 +48,6 @@ impl Field {
     }
 }
 
-
 #[derive(Default, Debug)]
 pub struct Coef {
     size: usize,

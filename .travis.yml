@@ -26,17 +26,20 @@ cache: cargo
 # RUSTFMT
 before_script:
   - export PATH="$PATH:$HOME/.cargo/bin"
-  - which rustfmt || cargo install rustfmt
+  - rustup component add rustfmt-preview
 
 script:
   - rustc --version
+
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo build --verbose; else cargo build --verbose; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo test --verbose; else cargo test --verbose; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo doc --verbose; else cargo doc --verbose; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo build --verbose --release; else cargo build --release --verbose; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo test --verbose --release; else cargo test --release --verbose; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo doc --verbose --release; else cargo doc --release --verbose; fi
-  - cargo fmt --verbose -- --write-mode=diff
+
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo build --verbose --release; else cargo build --verbose --release; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo test --verbose --release; else cargo test --verbose --release; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cargo doc --verbose --release; else cargo doc --verbose --release; fi
+
+  - cargo fmt --all -- --write-mode=diff
 
 notifications:
   email:

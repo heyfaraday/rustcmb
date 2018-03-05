@@ -7,7 +7,6 @@ const DATA_OUT: &str = "data/examples/out/norm/";
 const OUTPUT_SIZE: usize = SIZE / 2;
 
 fn main() {
-
     let mut mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
 
     let max_k_distance = SIZE as f64 / 2.;

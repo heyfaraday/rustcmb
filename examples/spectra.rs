@@ -1,7 +1,7 @@
 extern crate rustcmb;
 
-use rustcmb::spectra::{gasdev, gasdev_exp_k0, gasdev_max_k, gasdev_exp_and_sin, return_spectra};
-use rustcmb::io::{write_2d, write_1d};
+use rustcmb::spectra::{gasdev, gasdev_exp_and_sin, gasdev_max_k, return_spectra, gasdev_exp_k0};
+use rustcmb::io::{write_1d, write_2d};
 use rustcmb::fourier::fft_2d;
 
 const SIZE: usize = 512;
@@ -10,7 +10,6 @@ const MAX_ARG: f64 = SIZE as f64 / 8.;
 //const MAX_ARG: f64 = 15.;
 
 fn main() {
-
     println!("MAX_ARG: {}\n", MAX_ARG);
 
     let mut field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
@@ -53,5 +52,9 @@ fn main() {
     write_2d(&field, &DATA_OUT, &"gasdev_exp_and_sin_field.dat");
 
     let returned_spectra = return_spectra(&field, &a_mods, &b_mods, 100);
-    write_1d(&returned_spectra[0], &DATA_OUT, &"returned_exp_k0_spectra.dat");
+    write_1d(
+        &returned_spectra[0],
+        &DATA_OUT,
+        &"returned_exp_k0_spectra.dat",
+    );
 }

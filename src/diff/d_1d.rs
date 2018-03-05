@@ -6,7 +6,6 @@ use self::rustfft::num_complex::Complex;
 use self::rustfft::num_traits::Zero;
 
 pub fn d_1d(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<f64>) {
-
     let size = field.capacity() - 1;
 
     assert!(field.capacity() == size + 1);

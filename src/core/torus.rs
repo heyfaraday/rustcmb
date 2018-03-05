@@ -48,7 +48,6 @@ impl Field {
     }
 }
 
-
 #[derive(Default, Debug)]
 pub struct Coef {
     size: usize,
@@ -126,7 +125,11 @@ impl Coef {
 
     #[inline]
     pub fn b_j_begin(&self, i: usize) -> usize {
-        if i == 0 || i == self.size / 2 { 1 } else { 0 }
+        if i == 0 || i == self.size / 2 {
+            1
+        } else {
+            0
+        }
     }
 
     #[inline]

@@ -11,7 +11,6 @@ const DATA_OUT: &str = "data/examples/out/d_2d/";
 const SIZE: usize = 8;
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
@@ -30,7 +29,7 @@ fn main() {
 
     for i in 0..(SIZE + 1) {
         for j in 0..(SIZE + 1) {
-            field_answ[i][j] = - field_xx[i][j] - field_yy[i][j];
+            field_answ[i][j] = -field_xx[i][j] - field_yy[i][j];
         }
     }
     write_2d(&field_answ, &DATA_OUT, &"field_laplace.dat");

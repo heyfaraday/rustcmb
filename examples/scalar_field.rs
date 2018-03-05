@@ -1,7 +1,7 @@
 extern crate rustcmb;
 
-use rustcmb::spectra::{gasdev_exp_and_sin, return_spectra, exp_and_sin};
-use rustcmb::io::{write_2d, write_1d};
+use rustcmb::spectra::{exp_and_sin, gasdev_exp_and_sin, return_spectra};
+use rustcmb::io::{write_1d, write_2d};
 use rustcmb::corr::correlation_function;
 use rustcmb::fourier::fft_2d;
 
@@ -9,7 +9,6 @@ const SIZE: usize = 64;
 const DATA_OUT: &str = "data/examples/out/scalar_field/";
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
@@ -36,7 +35,6 @@ fn main() {
     let mut sum_of_corr_norm = 0.;
 
     for i in 0..number_of_bins {
-
         let arg = (i as f64) / (number_of_bins as f64) * (SIZE as f64 / (2. as f64).sqrt());
 
         dispersion[i] = exp_and_sin(&SIZE, &arg, &5., &0., &0., &1., &2., &6.).powi(2);
@@ -44,7 +42,6 @@ fn main() {
         sum_of_norm += spectra[1][i];
         sum_of_corr_norm += corr_function[1][i];
     }
-
 
     println!("{}. {}", sum_of_norm, sum_of_corr_norm);
     println!("{}, {}", SIZE * SIZE, SIZE * SIZE * (SIZE * SIZE - 1) / 2);

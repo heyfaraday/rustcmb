@@ -5,7 +5,6 @@ use rustcmb::core::torus;
 const SIZE: usize = 4;
 
 fn main() {
-
     let default_field = torus::Field::default();
     let field = torus::Field::new(SIZE);
     let mut mut_field = torus::Field::new(SIZE);

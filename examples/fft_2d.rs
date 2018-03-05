@@ -10,7 +10,6 @@ const DATA_OUT: &str = "data/examples/out/fft_2d/";
 const SIZE: usize = 8;
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
@@ -47,5 +46,4 @@ fn main() {
     fft_2d::torus::second_realization(&mut field, &a_mods, &b_mods);
     write_2d(&field, &DATA_OUT, &"first_realization_field_from_back.dat");
     println!("second realization field[3] after {:?}", field[3]);
-
 }

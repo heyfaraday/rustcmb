@@ -3,7 +3,7 @@ extern crate rustcmb;
 use rustcmb::corr::correlation_function;
 use rustcmb::spectra::{gasdev, gasdev_max_k, gasdev_exp_k0};
 use rustcmb::fourier::fft_2d::torus::first_realization;
-use rustcmb::diff::d_2d::{d_2d_xx, d_2d_yy, d_2d_xy};
+use rustcmb::diff::d_2d::{d_2d_xx, d_2d_xy, d_2d_yy};
 use rustcmb::io::{write_1d, write_2d};
 
 const SIZE: usize = 64;
@@ -12,14 +12,13 @@ const MAX_ARG: f64 = SIZE as f64 / 4.;
 const SCALE: usize = 20;
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![1.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
 
-//    gasdev(&field, &mut a_mods, &mut b_mods, 0., 1.);
+    //    gasdev(&field, &mut a_mods, &mut b_mods, 0., 1.);
     gasdev_max_k(&field, &mut a_mods, &mut b_mods, 0., 1., 4.);
-//    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG); // or
+    //    gasdev_exp_k0(&field, &mut a_mods, &mut b_mods, 0., 1., MAX_ARG); // or
 
     first_realization(&mut field, &a_mods, &b_mods);
 

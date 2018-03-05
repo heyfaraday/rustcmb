@@ -15,12 +15,10 @@ const XI_XX_0: f64 = -1.;
 const XI_YY_0: f64 = -1.;
 
 fn main() {
-
     let mut file =
         File::create("data/examples/out/mcmc/sample.dat").expect("Unable to create file");
 
     for _ in 0..NUMBER_FOR_SAMPLING {
-
         let f_plus = XI_XY / ((1. + XI_XX) * (1. + XI_YY)).sqrt();
         let f_minus = -XI_XY / ((1. - XI_XX) * (1. - XI_XX)).sqrt();
 
@@ -77,7 +75,6 @@ fn main() {
         file.write_all((format!("{}\t{}\t{}\t{}\n", phi1, phi2, v1, v2)).as_bytes())
             .expect("Unable to write data");
     }
-
 }
 
 #[inline]

@@ -9,7 +9,6 @@ use err::point_assert;
 use std::f64::consts::PI;
 
 pub fn torus_distance(field: &Vec<Vec<f64>>, point_1: &[usize; 2], point_2: &[usize; 2]) -> f64 {
-
     let size = field.capacity() - 1;
 
     point_assert(&field, &point_1);
@@ -43,7 +42,6 @@ pub fn torus_distance(field: &Vec<Vec<f64>>, point_1: &[usize; 2], point_2: &[us
 }
 
 pub fn angle_for_vector_field(vx: &f64, vy: &f64) -> f64 {
-
     assert!(*vx != 0.);
 
     let tg: f64 = vy / vx;
@@ -57,7 +55,6 @@ pub fn angle_for_vector_field(vx: &f64, vy: &f64) -> f64 {
 }
 
 pub fn fourier_distance(field: &Vec<Vec<f64>>, k1: usize, k2: usize) -> f64 {
-
     let size = field.capacity() - 1;
 
     size_assert_2d_for_field(&field);

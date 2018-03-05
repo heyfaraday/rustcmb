@@ -7,7 +7,6 @@ const DATA_IN: &str = "data/examples/in/io/";
 const DATA_OUT: &str = "data/examples/out/io/";
 
 fn main() {
-
     let mut field_2d = vec![vec![1.2; 5]; 5];
     for i in 0..5 {
         for j in 0..5 {

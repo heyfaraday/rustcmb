@@ -8,7 +8,6 @@ const DATA_OUT: &str = "data/examples/out/corr_2d/";
 const SIZE: usize = 64;
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
@@ -23,7 +22,6 @@ fn main() {
 
     for i in 0..SIZE {
         for j in 0..SIZE {
-
             let mut mod_delta_i = i as i32 + delta_i;
             let mut mod_delta_j = j as i32 + delta_j;
 
@@ -41,10 +39,7 @@ fn main() {
 
             println!(
                 "i1: {}, j1: {}, i2: {}, j2: {}",
-                i,
-                j,
-                mod_delta_i,
-                mod_delta_j
+                i, j, mod_delta_i, mod_delta_j
             );
         }
     }
@@ -55,12 +50,10 @@ fn main() {
 
     for delta_i in (-(SIZE as i32) + 1)..SIZE as i32 {
         for delta_j in (-(SIZE as i32) + 1)..SIZE as i32 {
-
             let mut sum = 0.;
 
             for i in 0..SIZE {
                 for j in 0..SIZE {
-
                     let mut mod_delta_i = i as i32 + delta_i;
                     let mut mod_delta_j = j as i32 + delta_j;
 
@@ -87,7 +80,8 @@ fn main() {
                 "delta_i: {}, delta_j: {}, cor_func: {}",
                 delta_i,
                 delta_j,
-                cor_func[(delta_i + SIZE as i32 - 1) as usize][(delta_j + SIZE as i32 - 1) as usize]
+                cor_func[(delta_i + SIZE as i32 - 1) as usize]
+                    [(delta_j + SIZE as i32 - 1) as usize]
             );
         }
     }

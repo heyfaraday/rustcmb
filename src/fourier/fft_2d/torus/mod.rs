@@ -1,6 +1,6 @@
 extern crate rustfft;
 
-use err::{size_assert_2d, nyquist_assert_2d};
+use err::{nyquist_assert_2d, size_assert_2d};
 
 use self::rustfft::algorithm::Radix4;
 use self::rustfft::FFT;
@@ -22,7 +22,6 @@ pub fn first_realization(
     let mut temporary: Vec<Vec<Complex<f64>>> = vec![vec![Complex::zero(); size]; size / 2 + 1];
 
     for i_mode in 0..(size / 2 + 1) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -39,7 +38,6 @@ pub fn first_realization(
     }
 
     for j in 0..size {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -67,7 +65,6 @@ pub fn second_realization(
     a_mods: &Vec<Vec<f64>>,
     b_mods: &Vec<Vec<f64>>,
 ) {
-
     let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
@@ -81,17 +78,15 @@ pub fn second_realization(
             for i_mode in 0..(size / 2 + 1) {
                 for j_mode in 0..size {
                     let arg = (i * i_mode) as f64 + (j * j_mode) as f64;
-                    field[i][j] += a_mods[i_mode][j_mode] * (h * arg).cos() +
-                        b_mods[i_mode][j_mode] * (h * arg).sin();
+                    field[i][j] += a_mods[i_mode][j_mode] * (h * arg).cos()
+                        + b_mods[i_mode][j_mode] * (h * arg).sin();
                 }
             }
         }
     }
-
 }
 
 pub fn back(field: &Vec<Vec<f64>>, a_mods: &mut Vec<Vec<f64>>, b_mods: &mut Vec<Vec<f64>>) {
-
     let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
@@ -100,7 +95,6 @@ pub fn back(field: &Vec<Vec<f64>>, a_mods: &mut Vec<Vec<f64>>, b_mods: &mut Vec<
     let mut temporary_b: Vec<Vec<f64>> = vec![vec![0.; size / 2 + 1]; size];
 
     for j in 0..size {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -120,7 +114,6 @@ pub fn back(field: &Vec<Vec<f64>>, a_mods: &mut Vec<Vec<f64>>, b_mods: &mut Vec<
     }
 
     for i_mode in 1..(size / 2) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -138,7 +131,6 @@ pub fn back(field: &Vec<Vec<f64>>, a_mods: &mut Vec<Vec<f64>>, b_mods: &mut Vec<
     }
 
     for i_mode in 0..1 {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -165,7 +157,6 @@ pub fn back(field: &Vec<Vec<f64>>, a_mods: &mut Vec<Vec<f64>>, b_mods: &mut Vec<
     }
 
     for i_mode in (size / 2)..(size / 2 + 1) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 

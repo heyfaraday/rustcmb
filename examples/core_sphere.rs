@@ -5,7 +5,6 @@ use rustcmb::core::sphere;
 const SIZE: usize = 4;
 
 fn main() {
-
     let default_field = sphere::Field::default();
     let field = sphere::Field::new(SIZE);
     let mut mut_field = sphere::Field::new(SIZE);

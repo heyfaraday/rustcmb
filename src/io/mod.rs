@@ -5,7 +5,6 @@ use std::io::prelude::Write;
 use std::io::{BufRead, BufReader};
 
 pub fn write_1d(field: &Vec<f64>, folder: &str, name: &str) {
-
     let size = field.capacity() - 1;
 
     let file_name = [folder, name].concat();
@@ -18,7 +17,6 @@ pub fn write_1d(field: &Vec<f64>, folder: &str, name: &str) {
 }
 
 pub fn write_2d(field: &Vec<Vec<f64>>, folder: &str, name: &str) {
-
     let size_1 = field.capacity() - 1;
     let size_2 = field[0].capacity() - 1;
 
@@ -34,7 +32,6 @@ pub fn write_2d(field: &Vec<Vec<f64>>, folder: &str, name: &str) {
 }
 
 pub fn read_1d(data: &mut Vec<f64>, folder: &str, name: &str) {
-
     let file_name = [folder, name].concat();
     let file = BufReader::new(File::open(file_name).expect("Unable to open file"));
 
@@ -48,7 +45,6 @@ pub fn read_1d(data: &mut Vec<f64>, folder: &str, name: &str) {
 }
 
 pub fn read_2d(data: &mut Vec<Vec<f64>>, folder: &str, name: &str) {
-
     let file_name = [folder, name].concat();
     let file = BufReader::new(File::open(file_name).expect("Unable to open file"));
 

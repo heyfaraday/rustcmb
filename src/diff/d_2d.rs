@@ -1,6 +1,6 @@
 extern crate rustfft;
 
-use err::{size_assert_2d, nyquist_assert_2d};
+use err::{nyquist_assert_2d, size_assert_2d};
 
 use self::rustfft::algorithm::Radix4;
 use self::rustfft::FFT;
@@ -8,7 +8,6 @@ use self::rustfft::num_complex::Complex;
 use self::rustfft::num_traits::Zero;
 
 pub fn d_2d_x(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-
     let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
@@ -17,7 +16,6 @@ pub fn d_2d_x(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
     let mut temporary: Vec<Vec<Complex<f64>>> = vec![vec![Complex::zero(); size]; size / 2 + 1];
 
     for i_mode in 0..(size / 2 + 1) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -37,7 +35,6 @@ pub fn d_2d_x(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
     }
 
     for j in 0..size {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -61,7 +58,6 @@ pub fn d_2d_x(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
 }
 
 pub fn d_2d_y(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-
     let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
@@ -70,7 +66,6 @@ pub fn d_2d_y(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
     let mut temporary: Vec<Vec<Complex<f64>>> = vec![vec![Complex::zero(); size]; size / 2 + 1];
 
     for i_mode in 0..(size / 2 + 1) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -90,7 +85,6 @@ pub fn d_2d_y(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
     }
 
     for j in 0..size {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -114,7 +108,6 @@ pub fn d_2d_y(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
 }
 
 pub fn d_2d_xx(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-
     let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
@@ -123,7 +116,6 @@ pub fn d_2d_xx(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
     let mut temporary: Vec<Vec<Complex<f64>>> = vec![vec![Complex::zero(); size]; size / 2 + 1];
 
     for i_mode in 0..(size / 2 + 1) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -143,7 +135,6 @@ pub fn d_2d_xx(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
     }
 
     for j in 0..size {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -167,7 +158,6 @@ pub fn d_2d_xx(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
 }
 
 pub fn d_2d_yy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-
     let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
@@ -176,7 +166,6 @@ pub fn d_2d_yy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
     let mut temporary: Vec<Vec<Complex<f64>>> = vec![vec![Complex::zero(); size]; size / 2 + 1];
 
     for i_mode in 0..(size / 2 + 1) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -196,7 +185,6 @@ pub fn d_2d_yy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
     }
 
     for j in 0..size {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -220,7 +208,6 @@ pub fn d_2d_yy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
 }
 
 pub fn d_2d_xy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-
     let size = field.capacity() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
@@ -229,7 +216,6 @@ pub fn d_2d_xy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
     let mut temporary: Vec<Vec<Complex<f64>>> = vec![vec![Complex::zero(); size]; size / 2 + 1];
 
     for i_mode in 0..(size / 2 + 1) {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 
@@ -249,7 +235,6 @@ pub fn d_2d_xy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
     }
 
     for j in 0..size {
-
         let mut input: Vec<Complex<f64>> = vec![Complex::zero(); size];
         let mut output: Vec<Complex<f64>> = vec![Complex::zero(); size];
 

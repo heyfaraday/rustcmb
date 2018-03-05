@@ -1,17 +1,16 @@
 extern crate rustcmb;
 
-use rustcmb::corr::{correlation_function, correlation_check, correlation_distance,
+use rustcmb::corr::{correlation_check, correlation_distance, correlation_function,
                     correlation_function_vector_field};
 use rustcmb::spectra::gasdev;
 use rustcmb::fourier::fft_2d::torus::first_realization;
-use rustcmb::io::{write_2d, write_1d};
+use rustcmb::io::{write_1d, write_2d};
 use rustcmb::math;
 
 const SIZE: usize = 64;
 const DATA_OUT: &str = "data/examples/out/corr/";
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![1.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
