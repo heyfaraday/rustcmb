@@ -95,7 +95,7 @@ pub fn correlation_function_vector_field(
     vx: &Vec<Vec<f64>>,
     vy: &Vec<Vec<f64>>,
     output_size: usize,
-) -> [Vec<f64>; 2] {
+) -> [Vec<f64>; 3] {
     let size = vx.capacity() - 1;
     let size_2 = vy.capacity() - 1;
     assert!(size == size_2);
@@ -105,7 +105,8 @@ pub fn correlation_function_vector_field(
 
     let max_distance = torus_distance(&vx, &[0, 0], &[size / 2, size / 2]);
 
-    let mut output = vec![0.; output_size];
+    let mut output_cos = vec![0.; output_size];
+    let mut output_sin = vec![0.; output_size];
     let mut norm_for_output = vec![0.; output_size];
     let h = max_distance / (output_size as f64);
 
@@ -129,7 +130,8 @@ pub fn correlation_function_vector_field(
                     &vx[i_first_point][j_second_point],
                     &vy[i_first_point][j_second_point],
                 );
-                output[index] += angle_1.sin() * angle_2.sin();
+                output_cos[index] += angle_1.cos() * angle_2.cos();
+                output_sin[index] += angle_1.sin() * angle_2.sin();
                 norm_for_output[index] += 1.;
             }
 
@@ -144,14 +146,16 @@ pub fn correlation_function_vector_field(
                         &vy[i_second_point][j_second_point],
                         &vy[i_second_point][j_second_point],
                     );
-                    output[index] += angle_1.sin() * angle_2.sin();
+                    output_cos[index] += angle_1.cos() * angle_2.cos();
+                    output_sin[index] += angle_1.sin() * angle_2.sin();
                     norm_for_output[index] += 1.;
                 }
             }
         }
     }
     for i in 0..output_size {
-        output[i] = output[i] / norm_for_output[i];
+        output_cos[i] = output_cos[i] / norm_for_output[i];
+        output_sin[i] = output_sin[i] / norm_for_output[i];
     }
-    [output, norm_for_output]
+    [output_cos, output_sin, norm_for_output]
 }

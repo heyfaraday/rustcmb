@@ -1,6 +1,7 @@
 extern crate rustfft;
 
 use err::{nyquist_assert_2d, size_assert_2d};
+use math::j_mode_normalized;
 
 use self::rustfft::algorithm::Radix4;
 use self::rustfft::FFT;
@@ -80,6 +81,60 @@ pub fn second_realization(
                     let arg = (i * i_mode) as f64 + (j * j_mode) as f64;
                     field[i][j] += a_mods[i_mode][j_mode] * (h * arg).cos()
                         + b_mods[i_mode][j_mode] * (h * arg).sin();
+                }
+            }
+        }
+    }
+}
+
+pub fn second_realization_d_2d_x(
+    field: &mut Vec<Vec<f64>>,
+    a_mods: &Vec<Vec<f64>>,
+    b_mods: &Vec<Vec<f64>>,
+) {
+    let size = field.capacity() - 1;
+
+    size_assert_2d(&field, &a_mods, &b_mods);
+    nyquist_assert_2d(&field, &a_mods, &b_mods);
+
+    let h = (2. * PI) / (size as f64);
+
+    for i in 0..(size + 1) {
+        for j in 0..(size + 1) {
+            field[i][j] = 0.;
+            for i_mode in 0..(size / 2 + 1) {
+                for j_mode in 0..size {
+                    let arg = (i * i_mode) as f64 + (j * j_mode) as f64;
+                    field[i][j] += -a_mods[i_mode][j_mode] * (h * arg).sin() * i_mode as f64
+                        + b_mods[i_mode][j_mode] * (h * arg).cos() * i_mode as f64;
+                }
+            }
+        }
+    }
+}
+
+pub fn second_realization_d_2d_y(
+    field: &mut Vec<Vec<f64>>,
+    a_mods: &Vec<Vec<f64>>,
+    b_mods: &Vec<Vec<f64>>,
+) {
+    let size = field.capacity() - 1;
+
+    size_assert_2d(&field, &a_mods, &b_mods);
+    nyquist_assert_2d(&field, &a_mods, &b_mods);
+
+    let h = (2. * PI) / (size as f64);
+
+    for i in 0..(size + 1) {
+        for j in 0..(size + 1) {
+            field[i][j] = 0.;
+            for i_mode in 0..(size / 2 + 1) {
+                for j_mode in 0..size {
+                    let arg = (i * i_mode) as f64 + (j * j_mode) as f64;
+                    field[i][j] += -a_mods[i_mode][j_mode] * (h * arg).sin()
+                        * j_mode_normalized(size, j_mode) as f64
+                        + b_mods[i_mode][j_mode] * (h * arg).cos()
+                            * j_mode_normalized(size, j_mode) as f64;
                 }
             }
         }

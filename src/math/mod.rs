@@ -42,16 +42,59 @@ pub fn torus_distance(field: &Vec<Vec<f64>>, point_1: &[usize; 2], point_2: &[us
 }
 
 pub fn angle_for_vector_field(vx: &f64, vy: &f64) -> f64 {
-    assert!(*vx != 0.);
+    assert!(*vx != 0. && *vy != 0., "vx and vy equal zero");
 
-    let tg: f64 = vy / vx;
-    let mut phi = tg.atan();
+    if *vx == 0. {
+        if *vy > 0. {
+            PI / 2.
+        } else {
+            -PI / 2.
+        }
+    } else {
+        let tg: f64 = vy / vx;
+        let mut phi = tg.atan();
 
-    if *vx < 0. {
-        phi += PI;
+        if *vx < 0. {
+            if *vy > 0. {
+                phi += PI
+            } else {
+                phi -= PI
+            }
+        }
+        phi
     }
+}
 
-    phi
+pub fn angle_for_tensor_field(q: &f64, u: &f64) -> f64 {
+    assert!(*q != 0. && *u != 0., "q and u equal zero");
+
+    if *q == 0. {
+        if *u > 0. {
+            PI / 4.
+        } else {
+            -PI / 4.
+        }
+    } else {
+        let tg: f64 = u / q;
+        let mut double_phi = tg.atan();
+
+        if *q < 0. {
+            if *u > 0. {
+                double_phi += PI
+            } else {
+                double_phi -= PI
+            }
+        }
+        double_phi / 2.
+    }
+}
+
+pub fn j_mode_normalized(size: usize, j: usize) -> i32 {
+    if j <= size / 2 {
+        j as i32
+    } else {
+        j as i32 - size as i32
+    }
 }
 
 pub fn fourier_distance(field: &Vec<Vec<f64>>, k1: usize, k2: usize) -> f64 {
