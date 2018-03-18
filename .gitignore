@@ -14,7 +14,12 @@ Cargo.lock
 *.iml
 
 # IntelliJ IDEA
-.idea
+/.idea/inspectionProfiles
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/rustcmb.iml
+/.idea/vcs.xml
+/.idea/workspace.xml
 
 # VSC
 .vscode

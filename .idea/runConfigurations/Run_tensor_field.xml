@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run tensor_field" type="CargoCommandRunConfiguration" factoryName="Cargo Command" folderName="examples">
+    <option name="channel" value="DEFAULT" />
+    <option name="command" value="run --example tensor_field" />
+    <option name="nocapture" value="true" />
+    <option name="backtrace" value="FULL" />
+    <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+    <envs />
+    <method />
+  </configuration>
+</component>
