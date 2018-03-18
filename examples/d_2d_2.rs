@@ -11,7 +11,6 @@ const DATA_OUT: &str = "data/examples/out/d_2d_2/";
 const SIZE: usize = 8;
 
 fn main() {
-
     let mut field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];

@@ -10,7 +10,6 @@ const DATA_OUT: &str = "data/examples/out/fft_2d_2/";
 const SIZE: usize = 8;
 
 fn main() {
-
     let mut field_1: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
     let mut field_2: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
