@@ -2,7 +2,7 @@ use err::{point_assert, size_assert_2d_for_field};
 use math::{angle_for_vector_field, torus_distance};
 
 pub fn correlation_function(field: &Vec<Vec<f64>>, output_size: usize) -> [Vec<f64>; 2] {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d_for_field(&field);
 
@@ -12,15 +12,13 @@ pub fn correlation_function(field: &Vec<Vec<f64>>, output_size: usize) -> [Vec<f
     let mut norm_for_output = vec![0.; output_size];
     let h = max_distance / (output_size as f64);
 
-    let mut index;
-
     for i_first_point in 0..size {
         for j_first_point in 0..size {
             let point_1 = [i_first_point, j_first_point];
 
             for j_second_point in (j_first_point + 1)..size {
                 let point_2 = [i_first_point, j_second_point];
-                index = (torus_distance(&field, &point_1, &point_2) / h).trunc() as usize;
+                let mut index = (torus_distance(&field, &point_1, &point_2) / h).trunc() as usize;
                 if index == output_size {
                     index -= 1;
                 }
@@ -32,7 +30,8 @@ pub fn correlation_function(field: &Vec<Vec<f64>>, output_size: usize) -> [Vec<f
             for i_second_point in (i_first_point + 1)..size {
                 for j_second_point in 0..size {
                     let point_2 = [i_second_point, j_second_point];
-                    index = (torus_distance(&field, &point_1, &point_2) / h).trunc() as usize;
+                    let mut index =
+                        (torus_distance(&field, &point_1, &point_2) / h).trunc() as usize;
                     if index == output_size {
                         index -= 1;
                     }
@@ -47,6 +46,23 @@ pub fn correlation_function(field: &Vec<Vec<f64>>, output_size: usize) -> [Vec<f
         output[i] = output[i] / norm_for_output[i];
     }
     [output, norm_for_output]
+}
+
+pub fn correlation_function_for_null(field: &Vec<Vec<f64>>) -> [f64; 2] {
+    let size = field.len() - 1;
+
+    size_assert_2d_for_field(&field);
+
+    let mut output: f64 = 0.;
+    let mut norm_for_output: f64 = 0.;
+
+    for i in 0..size {
+        for j in 0..size {
+            output += field[i][j] * field[i][j];
+            norm_for_output += 1.;
+        }
+    }
+    [output / norm_for_output, norm_for_output]
 }
 
 pub fn correlation_check(field: &Vec<Vec<f64>>) -> Vec<Vec<f64>> {
@@ -110,8 +126,6 @@ pub fn correlation_function_vector_field(
     let mut norm_for_output = vec![0.; output_size];
     let h = max_distance / (output_size as f64);
 
-    let mut index;
-
     for i_first_point in 0..size {
         for j_first_point in 0..size {
             let point_1 = [i_first_point, j_first_point];
@@ -122,7 +136,7 @@ pub fn correlation_function_vector_field(
 
             for j_second_point in (j_first_point + 1)..size {
                 let point_2 = [i_first_point, j_second_point];
-                index = (torus_distance(&vx, &point_1, &point_2) / h).trunc() as usize;
+                let mut index = (torus_distance(&vx, &point_1, &point_2) / h).trunc() as usize;
                 if index == output_size {
                     index -= 1;
                 }
@@ -138,7 +152,7 @@ pub fn correlation_function_vector_field(
             for i_second_point in (i_first_point + 1)..size {
                 for j_second_point in 0..size {
                     let point_2 = [i_second_point, j_second_point];
-                    index = (torus_distance(&vx, &point_1, &point_2) / h).trunc() as usize;
+                    let mut index = (torus_distance(&vx, &point_1, &point_2) / h).trunc() as usize;
                     if index == output_size {
                         index -= 1;
                     }
@@ -158,4 +172,113 @@ pub fn correlation_function_vector_field(
         output_sin[i] = output_sin[i] / norm_for_output[i];
     }
     [output_cos, output_sin, norm_for_output]
+}
+
+pub fn correlation_function_vector_field_for_null(
+    vx: &Vec<Vec<f64>>,
+    vy: &Vec<Vec<f64>>,
+) -> [f64; 3] {
+    let size = vx.len() - 1;
+    let size_2 = vy.len() - 1;
+    assert!(size == size_2);
+
+    size_assert_2d_for_field(&vx);
+    size_assert_2d_for_field(&vy);
+
+    let mut output_cos: f64 = 0.;
+    let mut output_sin: f64 = 0.;
+    let mut norm_for_output: f64 = 0.;
+
+    for i in 0..size {
+        for j in 0..size {
+            let angle = angle_for_vector_field(&vx[i][j], &vy[i][j]);
+
+            output_cos += angle.cos() * angle.cos();
+            output_sin += angle.sin() * angle.sin();
+            norm_for_output += 1.;
+        }
+    }
+    [
+        output_cos / norm_for_output,
+        output_sin / norm_for_output,
+        norm_for_output,
+    ]
+}
+
+pub fn two_point_correlation_function(
+    field1: &Vec<Vec<f64>>,
+    field2: &Vec<Vec<f64>>,
+    output_size: usize,
+) -> Vec<f64> {
+    let size1 = field1.len() - 1;
+    let size2 = field2.len() - 1;
+    assert!(size1 == size2);
+
+    size_assert_2d_for_field(&field1);
+    size_assert_2d_for_field(&field2);
+
+    let max_distance = torus_distance(&field1, &[0, 0], &[size1 / 2, size1 / 2]);
+
+    let mut output = vec![0.; output_size];
+    let mut norm_for_output = vec![0.; output_size];
+    let h = max_distance / (output_size as f64);
+
+    for i_first_point in 0..size1 {
+        for j_first_point in 0..size1 {
+            let point_1 = [i_first_point, j_first_point];
+
+            for j_second_point in (j_first_point + 1)..size1 {
+                let point_2 = [i_first_point, j_second_point];
+                let mut index = (torus_distance(&field1, &point_1, &point_2) / h).trunc() as usize;
+                if index == output_size {
+                    index -= 1;
+                }
+                output[index] +=
+                    field1[i_first_point][j_first_point] * field2[i_first_point][j_second_point];
+                norm_for_output[index] += 1.;
+            }
+
+            for i_second_point in (i_first_point + 1)..size1 {
+                for j_second_point in 0..size1 {
+                    let point_2 = [i_second_point, j_second_point];
+                    let mut index =
+                        (torus_distance(&field1, &point_1, &point_2) / h).trunc() as usize;
+                    if index == output_size {
+                        index -= 1;
+                    }
+                    output[index] += field1[i_first_point][j_first_point]
+                        * field2[i_second_point][j_second_point];
+                    norm_for_output[index] += 1.;
+                }
+            }
+        }
+    }
+
+    for i in 0..output_size {
+        output[i] = output[i] / norm_for_output[i];
+    }
+    output
+}
+
+pub fn two_point_correlation_function_at_null(
+    field1: &Vec<Vec<f64>>,
+    field2: &Vec<Vec<f64>>,
+) -> f64 {
+    let size1 = field1.len() - 1;
+    let size2 = field2.len() - 1;
+    assert!(size1 == size2);
+
+    size_assert_2d_for_field(&field1);
+    size_assert_2d_for_field(&field2);
+
+    let mut output: f64 = 0.;
+    let mut norm_for_output: f64 = 0.;
+
+    for i in 0..size1 {
+        for j in 0..size1 {
+            output += field1[i][j] * field2[i][j];
+            norm_for_output += 1.;
+        }
+    }
+    output / norm_for_output
 }

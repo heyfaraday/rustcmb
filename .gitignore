@@ -16,9 +16,11 @@ Cargo.lock
 # IntelliJ IDEA
 .idea
 
+# VSC
+.vscode
+
 # macOS
 *.DS_Store
 
 # Data files
 /data/
-*.dat

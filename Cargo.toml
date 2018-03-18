@@ -28,10 +28,16 @@ name = "corr_2d"
 name = "d_2d"
 
 [[example]]
+name = "d_2d_2"
+
+[[example]]
 name = "fft_1d"
 
 [[example]]
 name = "fft_2d"
+
+[[example]]
+name = "fft_2d_2"
 
 [[example]]
 name = "io"
