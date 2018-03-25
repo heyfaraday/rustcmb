@@ -9,6 +9,12 @@
 ```tree
 working_directory
 ├── data
+│   ├── in
+│       └── map.fits
+│   └── out
+│       ├── rust-examples
+│       ├── py-examples
+│       └── cpp-examples
 ├── rustcmb
 │   └── ...
 ├── cppcmb
