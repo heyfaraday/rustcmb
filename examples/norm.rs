@@ -3,7 +3,7 @@ extern crate rustcmb;
 use rustcmb::io::write_1d;
 
 const SIZE: usize = 64;
-const DATA_OUT: &str = "data/examples/out/norm/";
+const DATA_OUT: &str = "../data/out/rust-examples/norm/";
 const OUTPUT_SIZE: usize = SIZE / 2;
 
 fn main() {

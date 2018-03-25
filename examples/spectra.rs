@@ -5,7 +5,7 @@ use rustcmb::io::{write_1d, write_2d};
 use rustcmb::fourier::fft_2d;
 
 const SIZE: usize = 512;
-const DATA_OUT: &str = "data/examples/out/spectra/";
+const DATA_OUT: &str = "../data/out/rust-examples/spectra/";
 const MAX_ARG: f64 = SIZE as f64 / 8.;
 //const MAX_ARG: f64 = 15.;
 

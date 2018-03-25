@@ -6,7 +6,7 @@ use rustcmb::corr::correlation_function;
 use rustcmb::fourier::fft_2d;
 
 const SIZE: usize = 64;
-const DATA_OUT: &str = "data/examples/out/scalar_field/";
+const DATA_OUT: &str = "../data/out/rust-examples/scalar_field/";
 
 fn main() {
     let mut field: Vec<Vec<f64>> = vec![vec![0.; SIZE + 1]; SIZE + 1];

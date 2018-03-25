@@ -8,7 +8,7 @@ use rustcmb::io::{write_1d, write_2d};
 use rustcmb::math;
 
 const SIZE: usize = 64;
-const DATA_OUT: &str = "data/examples/out/corr/";
+const DATA_OUT: &str = "../data/out/rust-examples/corr/";
 
 fn main() {
     let mut field: Vec<Vec<f64>> = vec![vec![1.; SIZE + 1]; SIZE + 1];

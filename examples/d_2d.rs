@@ -6,8 +6,8 @@ use rustcmb::io::write_2d;
 use rustcmb::spectra::gasdev_max_k;
 
 #[allow(dead_code)]
-const DATA_IN: &str = "data/examples/in/d_2d/";
-const DATA_OUT: &str = "data/examples/out/d_2d/";
+const DATA_IN: &str = "../data/in/rust-examples/d_2d/";
+const DATA_OUT: &str = "../data/out/rust-examples/d_2d/";
 const SIZE: usize = 8;
 
 fn main() {

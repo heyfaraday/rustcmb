@@ -16,7 +16,7 @@ const XI_YY_0: f64 = -1.;
 
 fn main() {
     let mut file =
-        File::create("data/examples/out/mcmc/sample.dat").expect("Unable to create file");
+        File::create("../data/out/rust-examples/mcmc/sample.dat").expect("Unable to create file");
 
     for _ in 0..NUMBER_FOR_SAMPLING {
         let f_plus = XI_XY / ((1. + XI_XX) * (1. + XI_YY)).sqrt();

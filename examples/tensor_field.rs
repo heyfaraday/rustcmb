@@ -7,7 +7,7 @@ use rustcmb::diff::d_2d::{d_2d_xx, d_2d_xy, d_2d_yy};
 use rustcmb::io::{write_1d, write_2d};
 
 const SIZE: usize = 64;
-const DATA_OUT: &str = "data/examples/out/tensor_field/";
+const DATA_OUT: &str = "../data/out/rust-examples/tensor_field/";
 const MAX_ARG: f64 = SIZE as f64 / 4.;
 const SCALE: usize = 20;
 

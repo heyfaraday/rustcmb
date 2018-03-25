@@ -4,7 +4,7 @@ use rustcmb::fourier::fft_2d;
 use rustcmb::io::write_2d;
 use rustcmb::spectra::gasdev_exp_k0;
 
-const DATA_OUT: &str = "data/examples/out/corr_2d/";
+const DATA_OUT: &str = "../data/out/rust-examples/corr_2d/";
 const SIZE: usize = 64;
 
 fn main() {

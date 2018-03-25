@@ -3,8 +3,8 @@ extern crate rustcmb;
 use rustcmb::io::*;
 
 #[allow(dead_code)]
-const DATA_IN: &str = "data/examples/in/io/";
-const DATA_OUT: &str = "data/examples/out/io/";
+const DATA_IN: &str = "../data/in/rust-examples/io/";
+const DATA_OUT: &str = "../data/out/rust-examples/io/";
 
 fn main() {
     let mut field_2d = vec![vec![1.2; 5]; 5];

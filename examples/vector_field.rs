@@ -8,7 +8,7 @@ use rustcmb::diff::d_2d::{d_2d_x, d_2d_y};
 use rustcmb::io::{write_1d, write_2d};
 
 const SIZE: usize = 64;
-const DATA_OUT: &str = "data/examples/out/vector_field/";
+const DATA_OUT: &str = "../data/out/rust-examples/vector_field/";
 const MAX_ARG: f64 = SIZE as f64 / 4.;
 const SCALE: usize = 20;
 

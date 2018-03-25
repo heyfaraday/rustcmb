@@ -5,8 +5,8 @@ use rustcmb::fourier::fft_2d;
 use rustcmb::io::write_2d;
 
 #[allow(dead_code)]
-const DATA_IN: &str = "data/examples/in/fft_2d_2/";
-const DATA_OUT: &str = "data/examples/out/fft_2d_2/";
+const DATA_IN: &str = "../data/in/rust-examples/fft_2d_2/";
+const DATA_OUT: &str = "../data/out/rust-examples/fft_2d_2/";
 const SIZE: usize = 8;
 
 fn main() {
