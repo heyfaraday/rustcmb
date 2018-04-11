@@ -41,7 +41,11 @@ pub fn torus_distance(field: &Vec<Vec<f64>>, point_1: &[usize; 2], point_2: &[us
     arg.sqrt()
 }
 
-pub fn torus_distance_square(field: &Vec<Vec<f64>>, point_1: &[usize; 2], point_2: &[usize; 2]) -> f64 {
+pub fn torus_distance_square(
+    field: &Vec<Vec<f64>>,
+    point_1: &[usize; 2],
+    point_2: &[usize; 2],
+) -> f64 {
     let size = field.len() - 1;
 
     point_assert(&field, &point_1);
