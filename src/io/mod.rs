@@ -5,7 +5,7 @@ use std::io::prelude::Write;
 use std::io::{BufRead, BufReader};
 
 pub fn write_1d(field: &Vec<f64>, folder: &str, name: &str) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     let file_name = [folder, name].concat();
     let mut file = File::create(file_name).expect("Unable to create file");
@@ -17,8 +17,8 @@ pub fn write_1d(field: &Vec<f64>, folder: &str, name: &str) {
 }
 
 pub fn write_2d(field: &Vec<Vec<f64>>, folder: &str, name: &str) {
-    let size_1 = field.capacity() - 1;
-    let size_2 = field[0].capacity() - 1;
+    let size_1 = field.len() - 1;
+    let size_2 = field[0].len() - 1;
 
     let file_name = [folder, name].concat();
     let mut file = File::create(file_name).expect("Unable to create file");

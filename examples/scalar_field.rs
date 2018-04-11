@@ -13,7 +13,7 @@ fn main() {
     let mut a_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
     let mut b_mods: Vec<Vec<f64>> = vec![vec![0.; SIZE]; SIZE / 2 + 1];
 
-    println!("{}, {}, {}", SIZE, field.capacity() - 1, field.len() - 1);
+    println!("{}, {}, {}", SIZE, field.len() - 1, field.len() - 1);
 
     //    gasdev(&field, &mut a_mods, &mut b_mods, 0., 1.);
     gasdev_exp_and_sin(&field, &mut a_mods, &mut b_mods, 0., 5., 0., 0., 1., 2., 6.);

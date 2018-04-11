@@ -9,7 +9,7 @@ use self::rustfft::num_complex::Complex;
 use self::rustfft::num_traits::Zero;
 
 pub fn d_2d_x(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -59,7 +59,7 @@ pub fn d_2d_x(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
 }
 
 pub fn d_2d_y(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -109,7 +109,7 @@ pub fn d_2d_y(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Ve
 }
 
 pub fn d_2d_xx(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -159,7 +159,7 @@ pub fn d_2d_xx(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
 }
 
 pub fn d_2d_yy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -209,7 +209,7 @@ pub fn d_2d_yy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<V
 }
 
 pub fn d_2d_xy(field: &mut Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);

@@ -66,7 +66,7 @@ pub fn gasdev_exp_k0(
     std0: f64,
     k0: f64,
 ) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
     size_assert_2d(&field, &a, &b);
     assert!(k0 != 0.);
 
@@ -127,7 +127,7 @@ pub fn gasdev_max_k(
     std0: f64,
     max: f64,
 ) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a, &b);
 
@@ -192,7 +192,7 @@ pub fn gasdev_exp_and_sin(
     exp_param: f64,
     sin_param: f64,
 ) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
     size_assert_2d(&field, &a, &b);
     assert!(null_gap >= 0.);
 
@@ -340,7 +340,7 @@ pub fn return_spectra(
     b: &Vec<Vec<f64>>,
     number_of_bins: usize,
 ) -> [Vec<f64>; 2] {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
     size_assert_2d(&field, &a, &b);
 
     let mut spectra: Vec<f64> = vec![0.; number_of_bins];

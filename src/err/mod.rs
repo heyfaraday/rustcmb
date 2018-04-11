@@ -1,23 +1,23 @@
 pub fn size_assert_2d_for_field(field: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
-    assert!(field.capacity() == size + 1);
-    assert!(field[0].capacity() == size + 1);
+    assert!(field.len() == size + 1);
+    assert!(field[0].len() == size + 1);
 }
 
 pub fn size_assert_2d(field: &Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
-    assert!(field.capacity() == size + 1);
-    assert!(field[0].capacity() == size + 1);
-    assert!(a_mods.capacity() == size / 2 + 1);
-    assert!(b_mods.capacity() == size / 2 + 1);
-    assert!(a_mods[0].capacity() == size);
-    assert!(b_mods[0].capacity() == size);
+    assert!(field.len() == size + 1);
+    assert!(field[0].len() == size + 1);
+    assert!(a_mods.len() == size / 2 + 1);
+    assert!(b_mods.len() == size / 2 + 1);
+    assert!(a_mods[0].len() == size);
+    assert!(b_mods[0].len() == size);
 }
 
 pub fn nyquist_assert_2d(field: &Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: &Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
 
@@ -44,7 +44,7 @@ pub fn nyquist_assert_2d(field: &Vec<Vec<f64>>, a_mods: &Vec<Vec<f64>>, b_mods: 
 }
 
 pub fn point_assert(field: &Vec<Vec<f64>>, point: &[usize; 2]) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     assert!(point[0] < size + 1);
     assert!(point[1] < size + 1);

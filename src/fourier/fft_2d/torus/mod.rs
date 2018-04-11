@@ -15,7 +15,7 @@ pub fn first_realization(
     a_mods: &Vec<Vec<f64>>,
     b_mods: &Vec<Vec<f64>>,
 ) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -66,7 +66,7 @@ pub fn second_realization(
     a_mods: &Vec<Vec<f64>>,
     b_mods: &Vec<Vec<f64>>,
 ) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -92,7 +92,7 @@ pub fn second_realization_d_2d_x(
     a_mods: &Vec<Vec<f64>>,
     b_mods: &Vec<Vec<f64>>,
 ) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -118,7 +118,7 @@ pub fn second_realization_d_2d_y(
     a_mods: &Vec<Vec<f64>>,
     b_mods: &Vec<Vec<f64>>,
 ) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
     nyquist_assert_2d(&field, &a_mods, &b_mods);
@@ -142,7 +142,7 @@ pub fn second_realization_d_2d_y(
 }
 
 pub fn back(field: &Vec<Vec<f64>>, a_mods: &mut Vec<Vec<f64>>, b_mods: &mut Vec<Vec<f64>>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
     size_assert_2d(&field, &a_mods, &b_mods);
 

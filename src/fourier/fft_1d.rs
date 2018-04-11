@@ -8,11 +8,11 @@ use self::rustfft::num_traits::Zero;
 use std::f64::consts::PI;
 
 pub fn first_realization(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<f64>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
-    assert!(field.capacity() == size + 1);
-    assert!(a_mods.capacity() == size / 2 + 1);
-    assert!(b_mods.capacity() == size / 2 + 1);
+    assert!(field.len() == size + 1);
+    assert!(a_mods.len() == size / 2 + 1);
+    assert!(b_mods.len() == size / 2 + 1);
     assert!(b_mods[0] == 0.);
     assert!(b_mods[size / 2] == 0.);
 
@@ -45,11 +45,11 @@ pub fn first_realization(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<f
 }
 
 pub fn second_realization(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<f64>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
-    assert!(field.capacity() == size + 1);
-    assert!(a_mods.capacity() == size / 2 + 1);
-    assert!(b_mods.capacity() == size / 2 + 1);
+    assert!(field.len() == size + 1);
+    assert!(a_mods.len() == size / 2 + 1);
+    assert!(b_mods.len() == size / 2 + 1);
     assert!(b_mods[0] == 0.);
     assert!(b_mods[size / 2] == 0.);
 
@@ -70,11 +70,11 @@ pub fn second_realization(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<
 }
 
 pub fn third_realization(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<f64>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
-    assert!(field.capacity() == size + 1);
-    assert!(a_mods.capacity() == size / 2 + 1);
-    assert!(b_mods.capacity() == size / 2 + 1);
+    assert!(field.len() == size + 1);
+    assert!(a_mods.len() == size / 2 + 1);
+    assert!(b_mods.len() == size / 2 + 1);
     assert!(b_mods[0] == 0.);
     assert!(b_mods[size / 2] == 0.);
 
@@ -90,11 +90,11 @@ pub fn third_realization(field: &mut Vec<f64>, a_mods: &Vec<f64>, b_mods: &Vec<f
 }
 
 pub fn back(field: &Vec<f64>, a_mods: &mut Vec<f64>, b_mods: &mut Vec<f64>) {
-    let size = field.capacity() - 1;
+    let size = field.len() - 1;
 
-    assert!(field.capacity() == size + 1);
-    assert!(a_mods.capacity() == size / 2 + 1);
-    assert!(b_mods.capacity() == size / 2 + 1);
+    assert!(field.len() == size + 1);
+    assert!(a_mods.len() == size / 2 + 1);
+    assert!(b_mods.len() == size / 2 + 1);
     assert!(b_mods[0] == 0.);
     assert!(b_mods[size / 2] == 0.);
 
