@@ -36,6 +36,24 @@ fn main() {
     second_realization_d_2d_x(&mut field_x_second, &a_mods, &b_mods);
     second_realization_d_2d_y(&mut field_y_second, &a_mods, &b_mods);
 
+    let corr_function = correlation_function(&field, SCALE);
+    let corr_function_x = correlation_function(&field_x_second, SCALE);
+    let corr_function_y = correlation_function(&field_y_second, SCALE);
+    write_1d(&corr_function[0], DATA_OUT, "corr_function.dat");
+    write_1d(&corr_function[1], DATA_OUT, "norm_for_corr_function.dat");
+    write_1d(&corr_function_x[0], DATA_OUT, "corr_function_x.dat");
+    write_1d(
+        &corr_function_x[1],
+        DATA_OUT,
+        "norm_for_corr_function_x.dat",
+    );
+    write_1d(&corr_function_y[0], DATA_OUT, "corr_function_y.dat");
+    write_1d(
+        &corr_function_y[1],
+        DATA_OUT,
+        "norm_for_corr_function_y.dat",
+    );
+
     let corr_function_vector_field =
         correlation_function_vector_field(&field_x_second, &field_y_second, SCALE);
     write_1d(

@@ -60,6 +60,9 @@ name = "tensor_field"
 [[example]]
 name = "vector_field"
 
+[[example]]
+name = "vector_field_2"
+
 [dependencies]
 text_io = "*"
 rustfft = "2.0.0"
